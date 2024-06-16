@@ -49,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
@@ -106,10 +106,10 @@ TextureImporter:
         serializedVersion: 2
         x: 7
         y: 6
-        width: 41
+        width: 48
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -117,27 +117,6 @@ TextureImporter:
       bones: []
       spriteID: e27c40700e4f38bc0800000000000000
       internalID: -3781910019033479378
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle1_1
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 19
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 87b2257452a76bbe0800000000000000
-      internalID: -1461846728506201224
       vertices: []
       indices: 
       edges: []
