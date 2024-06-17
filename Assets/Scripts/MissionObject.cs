@@ -44,7 +44,6 @@ public class MissionObject : MonoBehaviour
             Inv.Icon[EmptyIndexInInventory].sprite = ThisObjectSprite.sprite;
             Inv.InventoryObjects.Insert(EmptyIndexInInventory, ObjectName);
             Inv.InventoryObjects.Remove("-");
-            Inv.i++;
 
             MP.LastAction = "Получено [" + ObjectName + "]";
 

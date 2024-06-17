@@ -95,7 +95,6 @@ public class MissionBot : MonoBehaviour
                             Inv.Icon[EmptyIndexInInventory].sprite = RewardSprite;
                             Inv.InventoryObjects.Insert(EmptyIndexInInventory, RewardName);
                             Inv.InventoryObjects.Remove("-");
-                            Inv.i++;
 
                             MP.LastAction = "Закончен квест [" + MissionName + "] и получен предмет [" + RewardName + "]";
                         }
