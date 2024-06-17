@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class OpenInventory : MonoBehaviour
 {
 	private Canvas canvas;
+    private MissionPlayer MP;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class OpenInventory : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.I))
 		{
 			canvas.enabled = !canvas.enabled;
+			//Close.SetActive(true);
 		}
 	}
 }
