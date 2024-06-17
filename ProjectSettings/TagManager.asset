@@ -13,6 +13,7 @@ TagManager:
   - MissionFlower
   - MissionObject
   - Inventory
+  - InvCanvas
   layers:
   - Default
   - TransparentFX

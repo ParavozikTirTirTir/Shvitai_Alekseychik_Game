@@ -201,6 +201,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded || (amountOfJumpsLeft > 0 && !isTouchingWall))
             {
+                AudioManager2.instance.PlaySFX("jump");
                 NormalJump();
             }
             else
@@ -251,7 +252,7 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         dashTimeLeft = dashTime;
         lastDash = Time.time;
-
+        AudioManager2.instance.PlaySFX("dash");
         PlayerAfterImagePool.Instance.GetFromPool();
         lastImageXpos = transform.position.x;
     }

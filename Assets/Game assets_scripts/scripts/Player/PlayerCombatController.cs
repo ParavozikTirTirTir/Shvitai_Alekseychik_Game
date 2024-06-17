@@ -47,6 +47,7 @@ public class PlayerCombatController : MonoBehaviour
         {
             if (combatEnabled)
             {
+                AudioManager2.instance.PlaySFX("attack");
                 //Attempt combat
                 gotInput = true;
                 lastInputTime = Time.time;

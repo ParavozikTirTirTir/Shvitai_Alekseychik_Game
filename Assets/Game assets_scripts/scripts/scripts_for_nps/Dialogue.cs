@@ -97,6 +97,7 @@ public class Dialogue : MonoBehaviour
         //список строк диалога
         string currentDialogue = dialogues[index];
         //пишем тексто по одной букве
+        AudioManager2.instance.PlaySFX("char");
         dialogueText.text += currentDialogue[charIndex];
         //изменяем индекс буквы
         charIndex++;
