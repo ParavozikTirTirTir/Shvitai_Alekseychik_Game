@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -12,21 +14,25 @@ public class PlayerStats : MonoBehaviour
         deathChunkParticle,
         deathBloodParticle;
 
-    private float currentHealth;
+    public Image fillBar;
+    public float currentHealth;
 
     private GameManager GM;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        fillBar = GameObject.Find("fill").GetComponent<Image>();
+        fillBar.fillAmount = 1;
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void DecreaseHealth(float amount)
     {
         currentHealth -= amount;
-
-        if(currentHealth <= 0.0f)
+        fillBar.fillAmount = currentHealth/maxHealth;
+        
+        if(currentHealth <= 0)
         {
             Die();
         }
