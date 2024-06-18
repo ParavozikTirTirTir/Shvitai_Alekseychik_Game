@@ -15,6 +15,7 @@ TagManager:
   - Inventory
   - InvCanvas
   - MissionMan
+  - Loot
   layers:
   - Default
   - TransparentFX

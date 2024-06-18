@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy1 : Entity
 {
+    public bool IsEnemyDead;
+
     public E1_IdleState idleState { get; private set; }
     public E1_MoveState moveState { get; private set; }
     public E1_PlayerDetectedState playerDetectedState { get; private set; }
@@ -63,6 +65,7 @@ public class Enemy1 : Entity
         if (isDead)
         {
             stateMachine.ChangeState(deadState);
+            IsEnemyDead = true;
         }
 
         else if (isStunned && stateMachine.currentState != stunState)
