@@ -68,7 +68,7 @@ public class AudioManager2 : MonoBehaviour
 
     }
 
-    void MusicObjectCreation(AudioClip clip)
+    public void MusicObjectCreation(AudioClip clip)
     {
         //проверяем существует ли музыка
         if (currentMusicObject)

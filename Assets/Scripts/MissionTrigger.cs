@@ -36,7 +36,6 @@ public class MissionTrigger : MonoBehaviour
     {
         if (trigger && MB.vis == false && MB.MissionDone == false)
         {
-            //GUI.DrawTexture(new Rect(Screen.width/2 + 20, Screen.height/ 2 + 40, 140, 25), aTexture);
             GUI.Box(new Rect(Screen.width/2 + 20, Screen.height/2 + 40, 110, 25), "[Е] Поговорить");
         }
     }
