@@ -2,7 +2,10 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;// Required when using Event data.
+<<<<<<< HEAD
+=======
 using UnityEngine.UIElements;
+>>>>>>> 7c167a261aa8cf23c9d8634b9c7b7b0e03278fa0
 using System;
 
 public class MouseOnIcon : MonoBehaviour, IPointerDownHandler
