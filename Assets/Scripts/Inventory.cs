@@ -9,31 +9,26 @@ public class Inventory : MonoBehaviour
 {
     public Image[] Icon; // слоты в инвентаре
     public Sprite[] Sprites; //просто пул из спрайтов всех объектов, которые мы крепим к иконке
+    public Image[] CloseButtons;
     private MissionObject MO;
-    private MissionPlayer MP;
-    //private Canvas canvas;
+    private MissionManager MM;
     public List<string> InventoryObjects = new List<string>();
     public Texture2D CloseButton;
 
     void Start()
     {
-        MP = GameObject.FindGameObjectWithTag("Player").GetComponent<MissionPlayer>();
+        MM = GameObject.FindGameObjectWithTag("MissionMan").GetComponent<MissionManager>();
     }
 
-    void OnGUI() //кнопка собрать
+    void OnGUI()
     {
         for (int i = 0; i < InventoryObjects.Count; i++)
         {
+            CloseButtons[i].sprite = Sprites[0];
 
             if (InventoryObjects[i] != "-")
             {
-                if (GUI.Button(new Rect(50, 50, 30, 30), CloseButton))
-                {
-                    Icon[i].sprite = Sprites[4];
-                    InventoryObjects[i] = "-";
-
-                    MP.LastAction = "Выброшен предмет [" + InventoryObjects[i] + "]";
-                }
+                CloseButtons[i].sprite = Sprites[1];
             }
         }
     }

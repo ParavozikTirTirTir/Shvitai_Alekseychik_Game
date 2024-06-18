@@ -8,20 +8,47 @@ using UnityEngine.SceneManagement;
 public class OpenInventory : MonoBehaviour
 {
 	private Canvas canvas;
-    private MissionPlayer MP;
+    public bool OpenInventoryCheck = false;
+
+    public PlayerController PC;
+    public PlayerCombatController PCC;
+    public IsPlayerInDialoge PinD;
 
     void Start()
     {
         canvas = GetComponent<Canvas>();
         canvas.enabled = false;
+
+        PC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        PCC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombatController>();
+        PinD = GameObject.FindGameObjectWithTag("Player").GetComponent<IsPlayerInDialoge>();
     }
 
     void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.I))
+		if (Input.GetKeyDown(KeyCode.I) && !PinD.InDialoge)
 		{
 			canvas.enabled = !canvas.enabled;
-			//Close.SetActive(true);
-		}
-	}
+            OpenInventoryCheck = !OpenInventoryCheck;
+        }
+
+        if (OpenInventoryCheck) DialogeState();
+        else DialogeExit();
+    }
+
+    void DialogeState()
+    {
+        PC.movementSpeed = 0;
+        PC.jumpForce = 0;
+        PC.dashSpeed = 0;
+        PCC.combatEnabled = false;
+    }
+
+    void DialogeExit()
+    {
+        PC.movementSpeed = 7;
+        PC.jumpForce = 16;
+        PC.dashSpeed = 20;
+        PCC.combatEnabled = true;
+    }
 }

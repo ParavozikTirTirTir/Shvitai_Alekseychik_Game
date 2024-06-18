@@ -8,26 +8,34 @@ using UnityEngine.SceneManagement;
 public class MissionBot : MonoBehaviour
 {
     public bool trigger = false;
+    public bool vis;
     public bool CanGiveAnItem;
-    public bool vis; // переменная, которая будет отображать диалог между персонажами
     public bool MissionDone = false; //переменная, которая определеяет, что квест уже сделан
     public string MissionName; // Текст который будет отображать наименование квеста
     public string MissionDialoge; // Текст диалога в квесте
     public string MissionDialogeDone; // Текст диалога в квесте
     public string MissionObjectName; //Квестовый предмет
+    public string MissionPriority = "1";
 
     public string RewardName; //Квестовый предмет
     public Sprite RewardSprite;
 
-    private MissionPlayer MP; // подключаем скрипт MissionPlayer
+    private MissionManager MM;
     private Inventory Inv;
+    public PlayerController PC;
+    public PlayerCombatController PCC;
+    public IsPlayerInDialoge PinD;
     public int ObjectIndexInInventory;
     public int EmptyIndexInInventory;
+    public int MoneyForMission;
 
     void Start()
     {
-        MP = GameObject.FindGameObjectWithTag("Player").GetComponent<MissionPlayer>(); // определяем что скрипт MissionPlayer будет находится на персонаже с тэгом player;
         Inv = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+        MM = GameObject.FindGameObjectWithTag("MissionMan").GetComponent<MissionManager>();
+        PC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        PCC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombatController>();
+        PinD = GameObject.FindGameObjectWithTag("Player").GetComponent<IsPlayerInDialoge>();
     }
 
     void OnTriggerStay2D(Collider2D obj) //игрок рядом с НПС
@@ -53,27 +61,56 @@ public class MissionBot : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && trigger == true && !MissionDone) // При нажатии на клавишу Е и если игрок рядом с НПС
         {
             vis = true;
+            PinD.InDialoge = true;
         }
+    }
+
+    void DialogeState()
+    {
+        PC.movementSpeed = 0;
+        PC.jumpForce = 0;
+        PC.dashSpeed = 0;
+        PCC.combatEnabled = false;
+    }
+
+    void DialogeExit()
+    {
+        PC.movementSpeed = 7;
+        PC.jumpForce = 16;
+        PC.dashSpeed = 20;
+        PCC.combatEnabled = true;
     }
 
     void OnGUI()
     {
         if (vis)
         {
-            if (!MP.MissionsInProgress.Contains(MissionName) && !MissionDone) //если квест еще не взят и не выполнен;
-            {
-                GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), MissionName); //на экране отображается окно с названием Квест;
-                GUI.Label(new Rect((Screen.width - 300) / 2 + 10, (Screen.height - 300) / 2 + 20, 290, 250), MissionDialoge); //текстом описывает квест;
-                if (GUI.Button(new Rect((Screen.width - 100) / 2 - 25, (Screen.height - 300) / 2 + 250, 150, 40), "Принять квест")) // при нажатии на кнопку Ok;
-                {
-                    MP.MissionsInProgress.Add(MissionName); // название квеста;
-                    vis = false; // все диалоговые окна закрываются;
+            DialogeState();
 
-                    MP.LastAction = "Принят квест [" + MissionName + "]";
+            if (!MM.MissionsInProgress.Contains(MissionName) && !MissionDone) //если квест еще не взят и не выполнен;
+            {
+                GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), MissionName); //на экране отображается окно с названием Квеста;
+                GUI.Label(new Rect((Screen.width - 300) / 2 + 10, (Screen.height - 300) / 2 + 20, 290, 250), MissionDialoge); //текстом описывает квест;
+                if (GUI.Button(new Rect((Screen.width - 100) / 2 - 65, (Screen.height - 300) / 2 + 250, 110, 40), "Принять квест")) // при нажатии на кнопку Ok;
+                {
+                    MM.MissionsInProgress.Add(MissionName);
+                    MM.MissionsPriority.Add(MissionPriority);
+                    vis = false; // все диалоговые окна закрываются;
+                    PinD.InDialoge = false;
+
+                    MM.LastAction = "Принят квест [" + MissionName + "]";
+                    DialogeExit();
+                }
+
+                if (GUI.Button(new Rect((Screen.width - 100) / 2 + 55, (Screen.height - 300) / 2 + 250, 110, 40), "Отказаться"))
+                {
+                    vis = false;
+                    PinD.InDialoge = false;
+                    DialogeExit();
                 }
             }
 
-            if (MP.MissionsInProgress.Contains(MissionName) && !MissionDone) // если квест уже взят, но не завершен;
+            if (MM.MissionsInProgress.Contains(MissionName) && !MissionDone) // если квест уже взят, но не завершен;
             {
                 GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), MissionName);
                 GUI.Label(new Rect((Screen.width - 300) / 2 + 10, (Screen.height - 300) / 2 + 20, 290, 250), MissionDialogeDone); //то описание квеста меняется на другой текст;
@@ -86,8 +123,9 @@ public class MissionBot : MonoBehaviour
                         Inv.InventoryObjects.Insert(ObjectIndexInInventory, "-");
                         Inv.InventoryObjects.Remove(MissionObjectName);
 
-                        MP.LastAction = "Закончен квест [" + MissionName + "]";
-                        MP.MissionsInProgress.Remove(MissionName); // убираем квест из списка активных
+                        MM.LastAction = "Закончен квест [" + MissionName + "]";
+                        MM.MissionsInProgress.Remove(MissionName); // убираем квест из списка активных
+                        MM.MissionsPriority.Remove(MissionPriority);
 
                         if (CanGiveAnItem)
                         {
@@ -96,12 +134,15 @@ public class MissionBot : MonoBehaviour
                             Inv.InventoryObjects.Insert(EmptyIndexInInventory, RewardName);
                             Inv.InventoryObjects.Remove("-");
 
-                            MP.LastAction = "Закончен квест [" + MissionName + "] и получен предмет [" + RewardName + "]";
+                            MM.LastAction = "Закончен квест [" + MissionName + "] и получен предмет [" + RewardName + "]";
                         }
 
-                        MP.Money = MP.Money + 100; //добавление денег за выполнение квеста;
+                        MM.Money = MM.Money + MoneyForMission; //добавление денег за выполнение квеста;
                         vis = false; // диалоговое окно закрывается;
+                        PinD.InDialoge = false;
                         MissionDone = true;
+
+                        DialogeExit();
                     }
                 }
 
@@ -110,6 +151,9 @@ public class MissionBot : MonoBehaviour
                     if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 300) / 2 + 250, 100, 40), "Нет")) // то вместо кнопки да, будет кнопка нет;
                     {
                         vis = false; // при нажатии на которую, окно просто закроется;
+                        PinD.InDialoge = false;
+
+                        DialogeExit();
                     }
                 }
             }

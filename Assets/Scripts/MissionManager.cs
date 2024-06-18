@@ -6,26 +6,64 @@ public class MissionManager : MonoBehaviour
 {
     public int Money; // количество денег;
     public Texture2D Coin;
+    public Texture2D MissionIcon1; //иконка миссии с приоритетом 1 и 2
+    public Texture2D MissionIcon2;
+    public Texture2D MissionIcon;
     public string LastAction = "";
+    public bool MissionInformationOnScreen = false;
+    public int MissionID;
+    private OpenInventory OI;
+    public bool IsInventoryOpen = false;
 
-    public List<string> MissionsInProgress = new List<string>(20);
+    public List<string> MissionsInProgress = new List<string>();
+    public List<string> MissionsPriority = new List<string>();
+
+    void Start()
+    {
+        OI = GameObject.FindGameObjectWithTag("InvCanvas").GetComponent<OpenInventory>();
+    }
+
+    void Update()
+    {
+        IsInventoryOpen = OI.OpenInventoryCheck;
+    }
 
     void OnGUI()
     {
-        GUI.Label(new Rect(42, 47, 1000, 30), "" + Money);
-        GUI.Label(new Rect(20, 45, 25, 25), Coin);
+        GUI.Label(new Rect(27, 57, 1000, 30), "" + Money);
+        GUI.Label(new Rect(5, 55, 25, 25), Coin);
 
-        if (MissionsInProgress.Count > 0)
+        if (!IsInventoryOpen)
         {
-            GUI.Label(new Rect(20, 80, 300, 300), MissionsInProgress[0] + "\n"); // значение названия квеста будет браться из скрипта Misson Bot;
-        }
+            foreach (string mission in MissionsInProgress)
+            {
+                if (MissionsPriority[MissionsInProgress.IndexOf(mission)] == "1")
+                {
+                    MissionIcon = MissionIcon1;
+                }
 
-        if (MissionsInProgress.Count > 1)
-        {
-            GUI.Label(new Rect(20, 80, 300, 300), MissionsInProgress[0] + "\n" + MissionsInProgress[1]); // значение названия квеста будет браться из скрипта Misson Bot;
-        }
+                if (MissionsPriority[MissionsInProgress.IndexOf(mission)] == "2")
+                {
+                    MissionIcon = MissionIcon2;
+                }
 
+                if (GUI.Button(new Rect(5, 80 + 25 * MissionsInProgress.IndexOf(mission), 30, 30), MissionIcon, "Label") || GUI.Button(new Rect(35, 85 + 25 * MissionsInProgress.IndexOf(mission), 200, 25), mission + "\n", "Label"))
+                {
+                    MissionInformationOnScreen = true;
+                    MissionID = MissionsInProgress.IndexOf(mission);
+                    break;
+                }
+
+                if (MissionInformationOnScreen == true && MissionID == MissionsInProgress.IndexOf(mission)) // ВЫВОД ИНФОРМАЦИИ О МИССИИ
+                {
+                    GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), mission);
+                    if (GUI.Button(new Rect((Screen.width - 100) / 2 - 25, (Screen.height - 300) / 2 + 250, 150, 40), "Закрыть"))
+                    {
+                        MissionInformationOnScreen = false;
+                    }
+                }
+            }
+        }
         GUI.Label(new Rect(5, Screen.height - 25, 1000, 25), LastAction);
-
     }
 }

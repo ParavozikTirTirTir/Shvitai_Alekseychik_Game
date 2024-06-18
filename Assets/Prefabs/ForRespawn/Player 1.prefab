@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 313449881091851665}
   - component: {fileID: 378394385302091408}
   - component: {fileID: 15761625401671751}
-  - component: {fileID: 7276763942105997881}
+  - component: {fileID: 3634542298586505825}
   m_Layer: 3
   m_Name: Player 1
   m_TagString: Player
@@ -127,7 +127,7 @@ Transform:
   m_GameObject: {fileID: 9121019372098033671}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.964389, y: -3.0921826, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -397,7 +397,7 @@ MonoBehaviour:
   deathBloodParticle: {fileID: 704525877400825495, guid: 579a590930ab2d043879e3cdaea943f4, type: 3}
   fillBar: {fileID: 0}
   currentHealth: 0
---- !u!114 &7276763942105997881
+--- !u!114 &3634542298586505825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -406,14 +406,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9121019372098033671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baf57429b222774439aa11d7d191a9be, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c8723ae4f32fd8479e8616cf3a6c2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Money: 100
-  Coin: {fileID: 2800000, guid: 7f41e4ff2e9e6df46965a90e59528a95, type: 3}
-  IsObjectCollected: 0
-  LastAction: 
-  MissionsInProgress: []
+  InDialoge: 0
 --- !u!1001 &5144374448445122455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -445,15 +441,15 @@ PrefabInstance:
     - target: {fileID: 494827428604611002, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
       propertyPath: 'Sprites.Array.data[0]'
       value: 
-      objectReference: {fileID: 21300000, guid: 91aa977ef701c7443a10ffe68052eefd, type: 2}
+      objectReference: {fileID: 247891007002746917, guid: c47b3d33053aae641ae12b6b959256a1, type: 3}
     - target: {fileID: 494827428604611002, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
       propertyPath: 'Sprites.Array.data[1]'
       value: 
-      objectReference: {fileID: 21300000, guid: 56956abfc0c26c34da968ad7816c1515, type: 2}
+      objectReference: {fileID: 5248415023898783801, guid: 6d6930fca16135148bcbd187d947cc48, type: 3}
     - target: {fileID: 494827428604611002, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
       propertyPath: 'Sprites.Array.data[2]'
       value: 
-      objectReference: {fileID: 21300000, guid: 1bd5c6890a35a3e4eb09e3e6802a1057, type: 2}
+      objectReference: {fileID: 7824768800323030905, guid: 0ce79d16c443cb04fada93af753a142a, type: 3}
     - target: {fileID: 494827428604611002, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
       propertyPath: 'Sprites.Array.data[3]'
       value: 
@@ -466,6 +462,10 @@ PrefabInstance:
       propertyPath: 'Sprites.Array.data[5]'
       value: 
       objectReference: {fileID: -1117370394306062565, guid: a5af2bd391a72cd458a038fc3ce40359, type: 3}
+    - target: {fileID: 494827428604611002, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
+      propertyPath: CloseButtons.Array.size
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 494827428604611002, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
       propertyPath: InventoryObjects.Array.size
       value: 12
@@ -608,7 +608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5283110032850356673, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
       propertyPath: m_Size.x
-      value: 1.4213209
+      value: 0.9566841
       objectReference: {fileID: 0}
     - target: {fileID: 5283110032850356673, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
       propertyPath: m_Size.y
@@ -616,7 +616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5283110032850356673, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
       propertyPath: m_Offset.x
-      value: -0.06541872
+      value: -0.12736988
       objectReference: {fileID: 0}
     - target: {fileID: 5283110032850356673, guid: 75536cc99b494c944b78c9a01e1e9f33, type: 3}
       propertyPath: m_Offset.y

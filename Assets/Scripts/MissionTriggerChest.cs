@@ -5,17 +5,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 [System.Serializable]
 
-public class MissionTrigger : MonoBehaviour
+public class MissionTriggerChest : MonoBehaviour
 {
     public bool trigger = false;
 
-    private MissionBot MB; // подключаем скрипт MissionBot чтобы брать оттуда состояние диалога;
-    private OpenInventory OI;
+    private MissionChest MC; // подключаем скрипт MissionBot чтобы брать оттуда состояние диалога;
 
     void Start()
     {
-        MB = GetComponent<MissionBot>(); //
-        OI = GameObject.FindGameObjectWithTag("InvCanvas").GetComponent<OpenInventory>();
+        MC = GetComponent<MissionChest>(); //
     }
 
     void OnTriggerStay2D(Collider2D obj) //«Наезд» на объект
@@ -36,9 +34,9 @@ public class MissionTrigger : MonoBehaviour
 
     void OnGUI() //кнопка поговорить
     {
-        if (trigger && MB.vis == false && MB.MissionDone == false)
+        if (trigger && MC.MissionDone == false)
         {
-            GUI.Box(new Rect(Screen.width/2 + 20, Screen.height/2 + 40, 110, 25), "[Е] Поговорить");
+            GUI.Box(new Rect(Screen.width / 2 + 20, Screen.height / 2 + 40, 110, 25), "[Е] Открыть");
         }
     }
 }

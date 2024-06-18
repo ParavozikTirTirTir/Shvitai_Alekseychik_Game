@@ -3,7 +3,7 @@ using System.Collections;
 public class MissionObject : MonoBehaviour
 
 {
-    private MissionPlayer MP; // подключаем скрипт MissionPlayer;
+    private MissionManager MM;
     public bool trigger = false;
     public string ObjectName;
     private Inventory Inv;
@@ -12,7 +12,7 @@ public class MissionObject : MonoBehaviour
 
 
     void Start() {
-        MP = GameObject.FindGameObjectWithTag("Player").GetComponent<MissionPlayer>();// определяем что скрипт MissionPlayer будет находится на персонаже с тэгом player;
+        MM = GameObject.FindGameObjectWithTag("MissionMan").GetComponent<MissionManager>();
         Inv = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
         ThisObjectSprite = gameObject.GetComponent<SpriteRenderer>();
     }
@@ -45,7 +45,7 @@ public class MissionObject : MonoBehaviour
             Inv.InventoryObjects.Insert(EmptyIndexInInventory, ObjectName);
             Inv.InventoryObjects.Remove("-");
 
-            MP.LastAction = "Получено [" + ObjectName + "]";
+            MM.LastAction = "Получено [" + ObjectName + "]";
 
             Destroy(gameObject); // и удаляем этот объект со сцены;
         }
