@@ -23,7 +23,6 @@ public class PlayerCombatController : MonoBehaviour
     private AttackDetails attackDetails;
 
     private Animator anim;
-
     private PlayerController PC;
     private PlayerStats PS;
 
@@ -47,7 +46,6 @@ public class PlayerCombatController : MonoBehaviour
         {
             if (combatEnabled)
             {
-                AudioManager2.instance.PlaySFX("attack");
                 //Attempt combat
                 gotInput = true;
                 lastInputTime = Time.time;
@@ -85,9 +83,10 @@ public class PlayerCombatController : MonoBehaviour
         attackDetails.damageAmount = attack1Damage;
         attackDetails.position = transform.position;
         attackDetails.stunDamageAmount = stunDamageAmount;
-
+        AudioManager2.instance.PlaySFX("attack2");
         foreach (Collider2D collider in detectedObjects)
         {
+            AudioManager2.instance.PlaySFX("attack");
             collider.transform.parent.SendMessage("Damage", attackDetails);
             //Instantiate hit particle
         }
