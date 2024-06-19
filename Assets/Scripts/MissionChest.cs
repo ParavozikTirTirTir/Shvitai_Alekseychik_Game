@@ -14,6 +14,7 @@ public class MissionChest : MonoBehaviour
     public string MissionName; // Текст который будет отображать наименование квеста
     public string MissionObjectName; //Квестовый предмет
     public string MissionPriority = "2";
+    public string MissionInformation;
 
     public string RewardName; //награда из сундука если она есть
     public Sprite RewardSprite; //спрайт награды из сундука
@@ -55,6 +56,8 @@ public class MissionChest : MonoBehaviour
         {
             MM.MissionsInProgress.Add(MissionName);
             MM.MissionsPriority.Add(MissionPriority);
+            MM.MissionsInformation.Add(MissionInformation);
+            MM.MissionsObjectName.Add(MissionObjectName);
             MM.LastAction = "Принят квест [" + MissionName + "]";
         }
 
@@ -69,6 +72,8 @@ public class MissionChest : MonoBehaviour
             MM.LastAction = "Открыт сундук";
             MM.MissionsInProgress.Remove(MissionName);
             MM.MissionsPriority.Remove(MissionPriority);
+            MM.MissionsInformation.Remove(MissionInformation);
+            MM.MissionsObjectName.Remove(MissionObjectName);
 
             GetComponent<SpriteRenderer>().sprite = OpenedChest;
 

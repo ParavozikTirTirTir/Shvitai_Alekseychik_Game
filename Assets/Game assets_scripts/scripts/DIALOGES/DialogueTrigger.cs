@@ -6,12 +6,14 @@ public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogueScript; // для получения параметров из скрипта
     private bool playerDetected;
+    public bool NPCMissionDone;
+    public GameObject NPC;
 
     //Игрок попадает в зону триггера
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Игрок в зоне триггера, отображаем индикатор диалога
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && NPCMissionDone)
         {
             playerDetected = true;
             dialogueScript.ToggleIndicator(playerDetected);
@@ -31,7 +33,9 @@ public class DialogueTrigger : MonoBehaviour
     //В зоне триггера, запуск диалога (нажатие E)
     private void Update()
     {
-        if (playerDetected && Input.GetKeyDown(KeyCode.E))
+        NPCMissionDone = NPC.GetComponent<MissionBot>().MissionDone;
+
+        if (playerDetected && Input.GetKeyDown(KeyCode.E) && NPCMissionDone)
         {
             dialogueScript.StartDialogue();
         }

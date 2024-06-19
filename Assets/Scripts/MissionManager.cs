@@ -17,6 +17,8 @@ public class MissionManager : MonoBehaviour
 
     public List<string> MissionsInProgress = new List<string>();
     public List<string> MissionsPriority = new List<string>();
+    public List<string> MissionsInformation = new List<string>();
+    public List<string> MissionsObjectName = new List<string>();
 
     void Start()
     {
@@ -57,6 +59,9 @@ public class MissionManager : MonoBehaviour
                 if (MissionInformationOnScreen == true && MissionID == MissionsInProgress.IndexOf(mission)) // ВЫВОД ИНФОРМАЦИИ О МИССИИ
                 {
                     GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), mission);
+                    GUI.Label(new Rect((Screen.width - 300) / 2 + 10, (Screen.height - 300) / 2 + 20, 290, 250), MissionsInformation[MissionsInProgress.IndexOf(mission)]);
+                    GUI.Label(new Rect((Screen.width - 300) / 2 + 10, (Screen.height - 300) / 2 + 50, 290, 250), "Требуемый предмет: [" + MissionsObjectName[MissionsInProgress.IndexOf(mission)] + "]x1");
+
                     if (GUI.Button(new Rect((Screen.width - 100) / 2 - 25, (Screen.height - 300) / 2 + 250, 150, 40), "Закрыть"))
                     {
                         MissionInformationOnScreen = false;
