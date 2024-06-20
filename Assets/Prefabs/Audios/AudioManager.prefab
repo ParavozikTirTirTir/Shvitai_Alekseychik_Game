@@ -47,17 +47,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxLibrary: []
-  sfx_jump: {fileID: 8300000, guid: 5349b035fb0627d41a520596bb013177, type: 3}
+  sfx_jump: {fileID: 8300000, guid: 2ad16d61387d7694bae54b8f95b6f21e, type: 3}
   sfx_char: {fileID: 8300000, guid: ae4227ed2fccae34bb9e3e2191b092fc, type: 3}
   sfx_dash: {fileID: 8300000, guid: 868ee4a372b1caf4999b24b4e9d1f03d, type: 3}
-  sfx_attack: {fileID: 8300000, guid: bc2d0d42789aade4eade2b884bd7950f, type: 3}
-  sfx_attack2: {fileID: 0}
-  sfx_enemy1attack: {fileID: 0}
-  sfx_enemy2attack: {fileID: 0}
-  sfx_bow: {fileID: 0}
-  music_back: {fileID: 0}
-  music_village: {fileID: 0}
-  currentMusicObject: {fileID: 0}
+  sfx_attack: {fileID: 8300000, guid: 8039b1d56ffb4df4b9afcd1f152bdee5, type: 3}
+  sfx_attack2: {fileID: 8300000, guid: e1f320849b6831841917592623b90768, type: 3}
+  sfx_enemy1attack: {fileID: 8300000, guid: 40b4997ed810e9e45b3093f5313a05de, type: 3}
+  sfx_enemy2attack: {fileID: 8300000, guid: 6ba8cc6c4c2663649b36b7b346fdc2fe, type: 3}
+  sfx_bow: {fileID: 8300000, guid: b56e2761f50b08248a8ed1f2fe1eb98c, type: 3}
+  music_back: {fileID: 8300000, guid: 0d46116aabd20ec4abe508b34b26de1b, type: 3}
+  music_village: {fileID: 8300000, guid: 055bb4598ecd6fc4d9f70a5132dacf66, type: 3}
+  currentMusicObject: {fileID: 4339944872548048389}
   soundObject: {fileID: 485943546771229227, guid: ca8b833d51e912a489897ff6ed86c042, type: 3}
 --- !u!114 &147210086004425608
 MonoBehaviour:

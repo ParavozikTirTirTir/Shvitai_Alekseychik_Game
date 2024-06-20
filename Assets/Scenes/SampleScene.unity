@@ -763,42 +763,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6044010130991460446, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-      propertyPath: sfx_bow
-      value: 
-      objectReference: {fileID: 8300000, guid: b56e2761f50b08248a8ed1f2fe1eb98c, type: 3}
-    - target: {fileID: 6044010130991460446, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-      propertyPath: sfx_jump
-      value: 
-      objectReference: {fileID: 8300000, guid: 2ad16d61387d7694bae54b8f95b6f21e, type: 3}
-    - target: {fileID: 6044010130991460446, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-      propertyPath: music_back
-      value: 
-      objectReference: {fileID: 8300000, guid: 0d46116aabd20ec4abe508b34b26de1b, type: 3}
-    - target: {fileID: 6044010130991460446, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-      propertyPath: sfx_attack
-      value: 
-      objectReference: {fileID: 8300000, guid: 8039b1d56ffb4df4b9afcd1f152bdee5, type: 3}
-    - target: {fileID: 6044010130991460446, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-      propertyPath: sfx_attack2
-      value: 
-      objectReference: {fileID: 8300000, guid: e1f320849b6831841917592623b90768, type: 3}
-    - target: {fileID: 6044010130991460446, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-      propertyPath: music_village
-      value: 
-      objectReference: {fileID: 8300000, guid: 055bb4598ecd6fc4d9f70a5132dacf66, type: 3}
-    - target: {fileID: 6044010130991460446, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-      propertyPath: sfx_enemy1attack
-      value: 
-      objectReference: {fileID: 8300000, guid: 40b4997ed810e9e45b3093f5313a05de, type: 3}
-    - target: {fileID: 6044010130991460446, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-      propertyPath: sfx_enemy2attack
-      value: 
-      objectReference: {fileID: 8300000, guid: 6ba8cc6c4c2663649b36b7b346fdc2fe, type: 3}
-    - target: {fileID: 6044010130991460446, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-      propertyPath: currentMusicObject
-      value: 
-      objectReference: {fileID: 1522491766}
     - target: {fileID: 6858193275018451200, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.590652
@@ -126609,11 +126573,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1522491766 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4339944872548048389, guid: f499283dccfd6084cbf4328208467ed6, type: 3}
-  m_PrefabInstance: {fileID: 133228248}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1528834072
 GameObject:
   m_ObjectHideFlags: 0
