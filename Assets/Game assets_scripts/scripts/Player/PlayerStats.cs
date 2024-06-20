@@ -7,7 +7,7 @@ using UnityEngine.XR;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
-    private float maxHealth;
+    public float maxHealth;
 
     [SerializeField]
     private GameObject

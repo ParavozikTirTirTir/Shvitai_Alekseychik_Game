@@ -16,6 +16,7 @@ TagManager:
   - InvCanvas
   - MissionMan
   - Loot
+  - HealCollider
   layers:
   - Default
   - TransparentFX
