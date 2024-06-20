@@ -10,7 +10,6 @@ public class MissionManager : MonoBehaviour
     public Texture2D MissionIcon2;
     public Texture2D MissionIcon;
     public string LastAction;
-    public string CurrentLocation;
     public bool MissionInformationOnScreen = false;
     public int MissionID;
     private OpenInventory OI;
@@ -26,7 +25,6 @@ public class MissionManager : MonoBehaviour
     void Start()
     {
         OI = GameObject.FindGameObjectWithTag("InvCanvas").GetComponent<OpenInventory>();
-        CurrentLocation = "Загадочный лес";
     }
 
     void Update()
@@ -76,7 +74,6 @@ public class MissionManager : MonoBehaviour
         }
 
         GUI.Label(new Rect(5, Screen.height - 25, 1000, 25), LastAction);
-        GUI.Label(new Rect(Screen.width/2, 10, 200, 25), CurrentLocation);
 
         //GUIStyle style = GUI.skin.GetStyle("Label");
         //style.fontSize = (int)(K_Screen);
