@@ -16,6 +16,7 @@ public class MissionBot : MonoBehaviour
     public string MissionDialogeDone; // Текст диалога в квесте
     public string MissionObjectName; //Квестовый предмет
     public string MissionPriority = "1";
+    public string MissionInformation; //Информация о миссии, которая выводится при нажатии на миссию в левом верхнем углу
 
     public string RewardName; //Квестовый предмет
     public Sprite RewardSprite;
@@ -95,6 +96,8 @@ public class MissionBot : MonoBehaviour
                 {
                     MM.MissionsInProgress.Add(MissionName);
                     MM.MissionsPriority.Add(MissionPriority);
+                    MM.MissionsInformation.Add(MissionInformation);
+                    MM.MissionsObjectName.Add(MissionObjectName);
                     vis = false; // все диалоговые окна закрываются;
                     PinD.InDialoge = false;
 
@@ -126,6 +129,8 @@ public class MissionBot : MonoBehaviour
                         MM.LastAction = "Закончен квест [" + MissionName + "]";
                         MM.MissionsInProgress.Remove(MissionName); // убираем квест из списка активных
                         MM.MissionsPriority.Remove(MissionPriority);
+                        MM.MissionsInformation.Remove(MissionInformation);
+                        MM.MissionsObjectName.Remove(MissionObjectName);
 
                         if (CanGiveAnItem)
                         {

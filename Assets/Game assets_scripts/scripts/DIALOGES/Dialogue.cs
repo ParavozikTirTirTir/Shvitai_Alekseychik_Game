@@ -26,6 +26,9 @@ public class Dialogue : MonoBehaviour
     //Следующая строка диалога
     private bool waitForNext;
 
+    public bool NPCMissionDone;
+    public GameObject NPC;
+
     //скрываем окна индикатора и диалога
     private void Awake()
     {
@@ -52,15 +55,17 @@ public class Dialogue : MonoBehaviour
     {
         if (started) //проверка, активности диалога
             return;
-
-        //Диалог начался
-        started = true;
-        //делаем онкно диалога видимым
-        ToggleWindow(true);
-        //прячем индикатор
-        ToggleIndicator(false);
-        //индект строки диалога, с которой начинаем писать
-        GetDialogue(0);
+        if (NPCMissionDone)
+        {
+            //Диалог начался
+            started = true;
+            //делаем онкно диалога видимым
+            ToggleWindow(true);
+            //прячем индикатор
+            ToggleIndicator(false);
+            //индект строки диалога, с которой начинаем писать
+            GetDialogue(0);
+        }
     }
 
     private void GetDialogue(int i)
@@ -118,11 +123,13 @@ public class Dialogue : MonoBehaviour
 
     private void Update()
     {
+        NPCMissionDone = NPC.GetComponent<MissionBot>().MissionDone;
+
         if (!started)
             return;
 
         //проверка:  следующая строка и ввод клавиши E
-        if (waitForNext && Input.GetKeyDown(KeyCode.E))
+        if (waitForNext && Input.GetKeyDown(KeyCode.E) && NPCMissionDone)
         {
             //переход на следующую строку
             waitForNext = false;
