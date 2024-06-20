@@ -18,6 +18,7 @@ public class E2_MeleeAttackState : MeleeAttackState
     public override void Enter()
     {
         base.Enter();
+        AudioManager2.instance.PlaySFX("en2_attack");
     }
 
     public override void Exit()

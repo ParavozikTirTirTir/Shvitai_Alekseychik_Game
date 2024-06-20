@@ -11,7 +11,7 @@ public class AudioManager2 : MonoBehaviour
     void Awake() { instance = this; }
 
     public List<AudioClip> sfxLibrary;
-    public AudioClip sfx_jump, sfx_hit, sfx_char, sfx_dash, sfx_attack;
+    public AudioClip sfx_jump, sfx_char, sfx_dash, sfx_attack, sfx_attack2, sfx_enemy1attack, sfx_enemy2attack, sfx_bow;
 
     public AudioClip music_back;
     //текущая музыка
@@ -24,19 +24,28 @@ public class AudioManager2 : MonoBehaviour
         switch (sfxName)
         {
             case "jump":
-                SoundObjectCreation(sfx_jump);
-                break;
-            case "hit":
-                SoundObjectCreation(sfx_hit);
+                SoundObjectCreation(sfx_jump, 0.05f);
                 break;
             case "char":
-                SoundObjectCreation(sfx_char);
+                SoundObjectCreation(sfx_char, 0.05f);
                 break;
             case "dash":
-                SoundObjectCreation(sfx_dash);
+                SoundObjectCreation(sfx_dash, 0.05f);
                 break;
             case "attack":
-                SoundObjectCreation(sfx_attack);
+                SoundObjectCreation(sfx_attack, 0.02f);
+                break;
+            case "attack2":
+                SoundObjectCreation(sfx_attack2, 0.02f);
+                break;
+            case "en1_attack":
+                SoundObjectCreation(sfx_enemy1attack, 0.01f);
+                break;
+            case "en2_attack":
+                SoundObjectCreation(sfx_enemy2attack, 0.01f);
+                break;
+            case "bow":
+                SoundObjectCreation(sfx_bow, 0.01f);
                 break;
             default:
                 break;
@@ -49,7 +58,7 @@ public class AudioManager2 : MonoBehaviour
         switch (musicName)
         {
             case "music_back":
-                SoundObjectCreation(music_back);
+                MusicObjectCreation(music_back);
                 break;
             default:
                 break;
@@ -57,12 +66,14 @@ public class AudioManager2 : MonoBehaviour
     }
 
 
-    void SoundObjectCreation(AudioClip clip)
+    void SoundObjectCreation(AudioClip clip, float volume)
     {
         //Создаем звуковой объект
         GameObject newObject = Instantiate(soundObject, transform);
         //Подставляем нужный звук
         newObject.GetComponent<AudioSource>().clip = clip;
+        newObject.GetComponent<AudioSource>().volume = volume;
+        newObject.GetComponent<AudioSource>().loop = false;
         //Воспроизводим звук
         newObject.GetComponent<AudioSource>().Play();
 
@@ -76,11 +87,16 @@ public class AudioManager2 : MonoBehaviour
         //Создаем звуковой объект
         GameObject newObject = Instantiate(soundObject, transform);
         //Подставляем нужный звук
-        currentMusicObject.GetComponent<AudioSource>().clip = clip;
+        newObject.GetComponent<AudioSource>().clip = clip;
+        newObject.GetComponent<AudioSource>().volume = 0.01f;
         //Зацикливаем источник звука
-        currentMusicObject.GetComponent<AudioSource>().loop = true;
+        newObject.GetComponent<AudioSource>().loop = true;
         //Воспроизводим звук
-        currentMusicObject.GetComponent<AudioSource>().Play();
+        newObject.GetComponent<AudioSource>().Play();
 
     }
+
+
+
+
 }

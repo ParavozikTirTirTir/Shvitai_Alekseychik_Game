@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 430258707431769610}
   m_Layer: 0
   m_Name: Enemy1.2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,6 +174,7 @@ MonoBehaviour:
   ledgeCheck: {fileID: 8757454394334749724}
   playerCheck: {fileID: 75340427439177705}
   groundCheck: {fileID: 7672889111674384271}
+  IsEnemyDead: 0
   idleStateData: {fileID: 11400000, guid: 77569c03a8061e546a31414c9fd5fc49, type: 2}
   moveStateData: {fileID: 11400000, guid: 41b85d2f3fb8f8b44b494a93a2beaa91, type: 2}
   playerDetectedData: {fileID: 11400000, guid: c61c8464839e9f14caa4cae47d539741, type: 2}
@@ -327,7 +328,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 973145373
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 6369384564468328029, guid: 68d22e00c91c0c94f96c86464edce402, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

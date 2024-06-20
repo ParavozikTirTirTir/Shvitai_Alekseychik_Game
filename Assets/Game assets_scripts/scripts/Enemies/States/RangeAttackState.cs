@@ -46,7 +46,7 @@ public class RangeAttackState : AttackState
     public override void TriggerAttack()
     {
         base.TriggerAttack();
-
+        AudioManager2.instance.PlaySFX("bow");
         projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
         projectileScript = projectile.GetComponent<Projectile>();
         projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage);

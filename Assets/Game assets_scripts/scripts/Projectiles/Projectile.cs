@@ -84,6 +84,7 @@ public class Projectile : MonoBehaviour
         this.speed = speed;
         this.travelDistance = travelDistance;
         attackDetails.damageAmount = damage;
+        AudioManager2.instance.PlaySFX("bow");
     }
 
     private void OnDrawGizmos()

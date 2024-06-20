@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6858193275018451200}
   - component: {fileID: 6044010130991460446}
+  - component: {fileID: 147210086004425608}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -46,10 +47,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxLibrary: []
   sfx_jump: {fileID: 8300000, guid: 5349b035fb0627d41a520596bb013177, type: 3}
-  sfx_hit: {fileID: 0}
   sfx_char: {fileID: 8300000, guid: ae4227ed2fccae34bb9e3e2191b092fc, type: 3}
   sfx_dash: {fileID: 8300000, guid: 868ee4a372b1caf4999b24b4e9d1f03d, type: 3}
   sfx_attack: {fileID: 8300000, guid: bc2d0d42789aade4eade2b884bd7950f, type: 3}
+  sfx_attack2: {fileID: 0}
+  sfx_enemy1attack: {fileID: 0}
+  sfx_enemy2attack: {fileID: 0}
+  sfx_bow: {fileID: 0}
   music_back: {fileID: 0}
   currentMusicObject: {fileID: 0}
   soundObject: {fileID: 485943546771229227, guid: ca8b833d51e912a489897ff6ed86c042, type: 3}
+--- !u!114 &147210086004425608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328016168417582526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b51343d71bb9144980157490395f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
