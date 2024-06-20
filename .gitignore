@@ -73,7 +73,7 @@ crashlytics-build.properties
 
 
 # Music
-*.wav
+
 *.wav.meta
-*.mp3
+
 *.mp3.meta

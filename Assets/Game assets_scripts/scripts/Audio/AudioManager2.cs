@@ -84,22 +84,10 @@ public class AudioManager2 : MonoBehaviour
 
     public void MusicObjectCreation(AudioClip clip)
     {
-        //проверяем существует ли музыка
-        if (currentMusicObject)
-            Destroy(currentMusicObject);
-        //Создаем звуковой объект
-        GameObject newObject = Instantiate(soundObject, transform);
-        //Подставляем нужный звук
-        newObject.GetComponent<AudioSource>().clip = clip;
-        newObject.GetComponent<AudioSource>().volume = 0.1f;
-        //Зацикливаем источник звука
-        newObject.GetComponent<AudioSource>().loop = true;
-        //Воспроизводим звук
-        newObject.GetComponent<AudioSource>().Play();
-
+        currentMusicObject.GetComponent<AudioSource>().clip = clip;
+        currentMusicObject.GetComponent<AudioSource>().volume = 0.05f;
+        currentMusicObject.GetComponent<AudioSource>().loop = true;
+        currentMusicObject.GetComponent<AudioSource>().Play();
     }
-
-
-
 
 }
