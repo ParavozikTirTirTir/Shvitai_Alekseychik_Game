@@ -17,6 +17,7 @@ TagManager:
   - MissionMan
   - Loot
   - HealCollider
+  - LocSign
   layers:
   - Default
   - TransparentFX

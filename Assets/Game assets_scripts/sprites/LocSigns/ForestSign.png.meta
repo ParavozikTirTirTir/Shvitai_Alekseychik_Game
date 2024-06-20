@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d6e0afda9d00dd344a5a235d8c76292d
+guid: de11622470405d44f86d0ab0606acba9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2736876529880562102
-    second: background_layer_2_0
+      213: 962110526969866703
+    second: ForestSign_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: background_layer_2_0
+      name: ForestSign_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 320
-        height: 180
+        width: 1473
+        height: 1021
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a468d52fb49a40ad0800000000000000
-      internalID: -2736876529880562102
+      spriteID: fc9e3b24d6a1a5d00800000000000000
+      internalID: 962110526969866703
       vertices: []
       indices: 
       edges: []
@@ -128,8 +128,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      background_layer_2_0: -2736876529880562102
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

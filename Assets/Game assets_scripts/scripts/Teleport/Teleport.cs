@@ -13,6 +13,11 @@ public class Teleport : MonoBehaviour
     public  bool trigger;
     public GameObject Obj;
 
+    public Sprite LocSignSprite; //спрайт таблички с названием локации куда телепортирует
+
+    private MissionManager MM;
+    private LocationSign LS;
+
     void OnTriggerStay2D(Collider2D collision)
     {
         trigger = true;
@@ -23,6 +28,11 @@ public class Teleport : MonoBehaviour
         trigger = false;
     }
 
+    void Start()
+    {
+        MM = GameObject.FindGameObjectWithTag("MissionMan").GetComponent<MissionManager>();
+        LS = GameObject.FindGameObjectWithTag("LocSign").GetComponent<LocationSign>();
+    }
 
     void Update()
     {
@@ -30,8 +40,17 @@ public class Teleport : MonoBehaviour
         {
             Obj = GameObject.FindGameObjectWithTag("Player");
             Obj.transform.position = point.transform.position;
-            trigger = false;
             AudioManager2.instance.PlayMusic(music);
+            LS.LocSignSprite = LocSignSprite;
+            LS.IsTeleportationCommited = true;
+        }
+    }
+
+    void OnGUI() //кнопка собрать
+    {
+        if (trigger) //игрок наступил на объект
+        {
+            GUI.Box(new Rect(Screen.width / 2 + 20, Screen.height / 2 + 40, 130, 25), "[E] Отправиться...");
         }
     }
 }
