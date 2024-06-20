@@ -4,11 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Teleport : MonoBehaviour
 {
     public Transform point;
-    private bool trigger;
+    public string music;
+    public  bool trigger;
     private GameObject Obj;
     void Start()
     {
@@ -22,14 +24,16 @@ public class Teleport : MonoBehaviour
             trigger = true;
         }
 
-    void OnTriggerExit2D(Collider2D collision) 
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
-            if (collision.gameObject.tag == "Player")
-            {
-                trigger = false;
-            }
+            trigger = false;
         }
     }
+
 
     void Update()
     {
@@ -37,6 +41,7 @@ public class Teleport : MonoBehaviour
         {
             Obj.transform.position = point.transform.position;
             trigger = false;
+            AudioManager2.instance.PlayMusic(music);
         }
     }
 }

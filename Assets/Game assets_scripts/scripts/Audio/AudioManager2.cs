@@ -13,7 +13,7 @@ public class AudioManager2 : MonoBehaviour
     public List<AudioClip> sfxLibrary;
     public AudioClip sfx_jump, sfx_char, sfx_dash, sfx_attack, sfx_attack2, sfx_enemy1attack, sfx_enemy2attack, sfx_bow;
 
-    public AudioClip music_back;
+    public AudioClip music_back, music_village;
     //текущая музыка
     public GameObject currentMusicObject;
 
@@ -24,28 +24,28 @@ public class AudioManager2 : MonoBehaviour
         switch (sfxName)
         {
             case "jump":
-                SoundObjectCreation(sfx_jump, 0.05f);
+                SoundObjectCreation(sfx_jump, 0.1f);
                 break;
             case "char":
-                SoundObjectCreation(sfx_char, 0.05f);
+                SoundObjectCreation(sfx_char, 0.1f);
                 break;
             case "dash":
-                SoundObjectCreation(sfx_dash, 0.05f);
+                SoundObjectCreation(sfx_dash, 0.1f);
                 break;
             case "attack":
-                SoundObjectCreation(sfx_attack, 0.02f);
+                SoundObjectCreation(sfx_attack, 0.05f);
                 break;
             case "attack2":
-                SoundObjectCreation(sfx_attack2, 0.02f);
+                SoundObjectCreation(sfx_attack2, 0.1f);
                 break;
             case "en1_attack":
-                SoundObjectCreation(sfx_enemy1attack, 0.01f);
+                SoundObjectCreation(sfx_enemy1attack, 0.05f);
                 break;
             case "en2_attack":
-                SoundObjectCreation(sfx_enemy2attack, 0.01f);
+                SoundObjectCreation(sfx_enemy2attack, 0.05f);
                 break;
             case "bow":
-                SoundObjectCreation(sfx_bow, 0.01f);
+                SoundObjectCreation(sfx_bow, 0.05f);
                 break;
             default:
                 break;
@@ -59,6 +59,9 @@ public class AudioManager2 : MonoBehaviour
         {
             case "music_back":
                 MusicObjectCreation(music_back);
+                break;
+            case "music_village":
+                MusicObjectCreation(music_village);
                 break;
             default:
                 break;
@@ -88,7 +91,7 @@ public class AudioManager2 : MonoBehaviour
         GameObject newObject = Instantiate(soundObject, transform);
         //Подставляем нужный звук
         newObject.GetComponent<AudioSource>().clip = clip;
-        newObject.GetComponent<AudioSource>().volume = 0.01f;
+        newObject.GetComponent<AudioSource>().volume = 0.1f;
         //Зацикливаем источник звука
         newObject.GetComponent<AudioSource>().loop = true;
         //Воспроизводим звук
