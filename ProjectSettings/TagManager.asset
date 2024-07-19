@@ -18,6 +18,8 @@ TagManager:
   - Loot
   - HealCollider
   - LocSign
+  - MiningObject
+  - DialogueScript
   layers:
   - Default
   - TransparentFX

@@ -13,33 +13,36 @@ public class MissionManager : MonoBehaviour
     public bool MissionInformationOnScreen = false;
     public int MissionID;
     private OpenInventory OI;
-    public bool IsInventoryOpen = false;
+    private OpenMagicBook MB;
 
     public List<string> MissionsInProgress = new List<string>();
     public List<string> MissionsPriority = new List<string>();
     public List<string> MissionsInformation = new List<string>();
     public List<string> MissionsObjectName = new List<string>();
 
+    public Texture2D PlayerIcon;
+
     //public int K_Screen;
 
     void Start()
     {
         OI = GameObject.FindGameObjectWithTag("InvCanvas").GetComponent<OpenInventory>();
+        MB = GameObject.Find("MagicBook").GetComponent<OpenMagicBook>();
     }
 
-    void Update()
-    {
-        IsInventoryOpen = OI.OpenInventoryCheck;
-        //K_Screen = (Screen.width * Screen.height) / 40000;
-    }
+    //void Update()
+    //{
+    //    //K_Screen = (Screen.width * Screen.height) / 40000;
+    //}
 
     void OnGUI()
     {
-        GUI.Label(new Rect(27, 57, 1000, 30), "" + Money);
-        GUI.Label(new Rect(5, 55, 25, 25), Coin);
-
-        if (!IsInventoryOpen)
+        if (!OI.OpenInventoryCheck && !MB.OpenBookCheck)
         {
+            GUI.Label(new Rect(27, 57, 1000, 30), "" + Money);
+            GUI.Label(new Rect(5, 55, 25, 25), Coin);
+            GUI.Label(new Rect(5, Screen.height - 25, 1000, 25), LastAction);
+
             foreach (string mission in MissionsInProgress)
             {
                 if (MissionsPriority[MissionsInProgress.IndexOf(mission)] == "1")
@@ -72,9 +75,6 @@ public class MissionManager : MonoBehaviour
                 }
             }
         }
-
-        GUI.Label(new Rect(5, Screen.height - 25, 1000, 25), LastAction);
-
         //GUIStyle style = GUI.skin.GetStyle("Label");
         //style.fontSize = (int)(K_Screen);
     }

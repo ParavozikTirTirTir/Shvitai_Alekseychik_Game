@@ -11,6 +11,7 @@ public class MissionBot : MonoBehaviour
     public bool vis;
     public bool CanGiveAnItem;
     public bool MissionDone = false; //переменная, которая определеяет, что квест уже сделан
+    public string NpcName;
     public string MissionName; // Текст который будет отображать наименование квеста
     public string MissionDialoge; // Текст диалога в квесте
     public string MissionDialogeDone; // Текст диалога в квесте
@@ -20,14 +21,15 @@ public class MissionBot : MonoBehaviour
 
     public string RewardName; //Квестовый предмет
     public Sprite RewardSprite;
+    public Texture2D[] Emotions;
 
     private MissionManager MM;
     private Inventory Inv;
-    public PlayerController PC;
-    public PlayerCombatController PCC;
-    public IsPlayerInDialoge PinD;
-    public int ObjectIndexInInventory;
-    public int EmptyIndexInInventory;
+    private PlayerController PC;
+    private PlayerCombatController PCC;
+    private IsPlayerInDialoge PinD;
+    private int ObjectIndexInInventory;
+    private int EmptyIndexInInventory;
     public int MoneyForMission;
 
     void Start()
@@ -72,6 +74,7 @@ public class MissionBot : MonoBehaviour
         PC.jumpForce = 0;
         PC.dashSpeed = 0;
         PCC.combatEnabled = false;
+        MM.LastAction = "";
     }
 
     void DialogeExit()
@@ -88,11 +91,33 @@ public class MissionBot : MonoBehaviour
         {
             DialogeState();
 
+            GUI.Box(new Rect( //лицо перса
+                    15,
+                    Screen.height * 2 / 4 - 15,
+                    Screen.height * 2 / 4,
+                    Screen.height * 2 / 4),
+                    Emotions[0]);
+
             if (!MM.MissionsInProgress.Contains(MissionName) && !MissionDone) //если квест еще не взят и не выполнен;
             {
-                GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), MissionName); //на экране отображается окно с названием Квеста;
-                GUI.Label(new Rect((Screen.width - 300) / 2 + 10, (Screen.height - 300) / 2 + 20, 290, 250), MissionDialoge); //текстом описывает квест;
-                if (GUI.Button(new Rect((Screen.width - 100) / 2 - 65, (Screen.height - 300) / 2 + 250, 110, 40), "Принять квест")) // при нажатии на кнопку Ok;
+                GUI.Box(new Rect( //плашка с именем
+                    30 + Screen.height * 2 / 4,
+                    Screen.height * 3 / 4 - 15,
+                    Screen.width - (30 + Screen.height * 2 / 4) - 15 - (Screen.width / 4),
+                    Screen.height / 4),
+                    NpcName); //на экране отображается окно с названием Квеста;
+                GUI.Label(new Rect( // слова перса
+                    40 + Screen.height * 2 / 4,
+                    Screen.height * 3 / 4 + 20,
+                    Screen.width - (30 + Screen.height * 2 / 4) - 15 - (Screen.width / 4) - 10,
+                    250),
+                    MissionDialoge); //текстом описывает квест;
+                if (GUI.Button(new Rect( // ответ 1
+                    Screen.width * 3 / 4,
+                    Screen.height * 3 / 4 - 15,
+                    200,
+                    Screen.height / 4 / 4),
+                    "Принять задание")) // при нажатии на кнопку Ok;
                 {
                     MM.MissionsInProgress.Add(MissionName);
                     MM.MissionsPriority.Add(MissionPriority);
@@ -105,7 +130,12 @@ public class MissionBot : MonoBehaviour
                     DialogeExit();
                 }
 
-                if (GUI.Button(new Rect((Screen.width - 100) / 2 + 55, (Screen.height - 300) / 2 + 250, 110, 40), "Отказаться"))
+                if (GUI.Button(new Rect( // ответ 2
+                    Screen.width * 3 / 4,
+                    Screen.height * 3 / 4 - 15 + Screen.width / 4 / 20 + Screen.height / 4 / 4,
+                    200,
+                    Screen.height / 4 / 4),
+                    "Не сейчас"))
                 {
                     vis = false;
                     PinD.InDialoge = false;
@@ -115,11 +145,26 @@ public class MissionBot : MonoBehaviour
 
             if (MM.MissionsInProgress.Contains(MissionName) && !MissionDone) // если квест уже взят, но не завершен;
             {
-                GUI.Box(new Rect((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300), MissionName);
-                GUI.Label(new Rect((Screen.width - 300) / 2 + 10, (Screen.height - 300) / 2 + 20, 290, 250), MissionDialogeDone); //то описание квеста меняется на другой текст;
+                GUI.Box(new Rect( //плашка с именем
+                    30 + Screen.height * 2 / 4,
+                    Screen.height * 3 / 4 - 15,
+                    Screen.width - (30 + Screen.height * 2 / 4) - 15 - (Screen.width / 4),
+                    Screen.height / 4),
+                    NpcName);
+                GUI.Label(new Rect( // слова перса
+                    40 + Screen.height * 2 / 4,
+                    Screen.height * 3 / 4 + 20,
+                    Screen.width - (30 + Screen.height * 2 / 4) - 15 - (Screen.width / 4) - 10,
+                    250),
+                    MissionDialogeDone); //то описание квеста меняется на другой текст;
                 if (Inv.InventoryObjects.Contains(MissionObjectName))
                 {
-                    if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 300) / 2 + 250, 100, 40), "Да")) // то появится кнопка да, при нажатии на которую;
+                    if (GUI.Button(new Rect( // ответ 1
+                    Screen.width * 3 / 4,
+                    Screen.height * 3 / 4 - 15,
+                    200,
+                    Screen.height / 4 / 4),
+                    "Отдать предмет")) // то появится кнопка да, при нажатии на которую;
                     {
                         ObjectIndexInInventory = Inv.InventoryObjects.IndexOf(MissionObjectName);
                         Inv.Icon[ObjectIndexInInventory].sprite = Inv.Sprites[4];
@@ -153,7 +198,12 @@ public class MissionBot : MonoBehaviour
 
                 else
                 { // если вы еще не подобрали объект;
-                    if (GUI.Button(new Rect((Screen.width - 100) / 2, (Screen.height - 300) / 2 + 250, 100, 40), "Нет")) // то вместо кнопки да, будет кнопка нет;
+                    if (GUI.Button(new Rect( // ответ 1
+                    Screen.width * 3 / 4,
+                    Screen.height * 3 / 4 - 15,
+                    200,
+                    Screen.height / 4 / 4),
+                    "Я зайду позже")) // то вместо кнопки да, будет кнопка нет;
                     {
                         vis = false; // при нажатии на которую, окно просто закроется;
                         PinD.InDialoge = false;

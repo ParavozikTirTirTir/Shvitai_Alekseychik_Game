@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     public Image[] Icon; // слоты в инвентаре
     public Sprite[] Sprites; //просто пул из спрайтов всех объектов, которые мы крепим к иконке
     public Image[] CloseButtons;
-    private MissionObject MO;
+
     private MissionManager MM;
     public List<string> InventoryObjects = new List<string>();
     public Texture2D CloseButton;

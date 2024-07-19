@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MissionChest : MonoBehaviour
 {
-    public bool trigger = false;
+    private bool trigger = false;
     public bool CanGiveAnItem; //сундук дает предмет или нет
 
     public bool MissionDone = false; //переменная, которая определеяет, что квест уже сделан
@@ -22,8 +22,8 @@ public class MissionChest : MonoBehaviour
 
     private MissionManager MM;
     private Inventory Inv;
-    public int ObjectIndexInInventory;
-    public int EmptyIndexInInventory;
+    private int ObjectIndexInInventory;
+    private int EmptyIndexInInventory;
     public int MoneyForMission;
 
     void Start()
@@ -64,13 +64,13 @@ public class MissionChest : MonoBehaviour
         // открытие сундука
         if (Input.GetKeyDown(KeyCode.E) && trigger == true && !MissionDone && MM.MissionsInProgress.Contains(MissionName) && Inv.InventoryObjects.Contains(MissionObjectName))
         {
-            ObjectIndexInInventory = Inv.InventoryObjects.IndexOf(MissionObjectName);
+            ObjectIndexInInventory = Inv.InventoryObjects.IndexOf(MissionObjectName); //УДАЛЕНИЕ КЛЮЧА ИЗ ИНВЕНТАРЯ
             Inv.Icon[ObjectIndexInInventory].sprite = Inv.Sprites[4];
             Inv.InventoryObjects.Insert(ObjectIndexInInventory, "-");
             Inv.InventoryObjects.Remove(MissionObjectName);
 
             MM.LastAction = "Открыт сундук";
-            MM.MissionsInProgress.Remove(MissionName);
+            MM.MissionsInProgress.Remove(MissionName); //УДАЛЕНИЕ ИНФОРМАЦИИ О МИССИИ
             MM.MissionsPriority.Remove(MissionPriority);
             MM.MissionsInformation.Remove(MissionInformation);
             MM.MissionsObjectName.Remove(MissionObjectName);
@@ -79,6 +79,14 @@ public class MissionChest : MonoBehaviour
 
             MM.Money = MM.Money + MoneyForMission; //добавление денег за выполнение квеста;
             MissionDone = true;
+
+            if (CanGiveAnItem) //добавление награды из сундука в инвентарь
+            {
+                EmptyIndexInInventory = Inv.InventoryObjects.IndexOf("-");
+                Inv.Icon[EmptyIndexInInventory].sprite = RewardSprite;
+                Inv.InventoryObjects.Insert(EmptyIndexInInventory, RewardName);
+                Inv.InventoryObjects.Remove("-");
+            }
         }
     }
 

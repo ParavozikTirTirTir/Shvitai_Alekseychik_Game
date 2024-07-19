@@ -7,12 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class OpenInventory : MonoBehaviour
 {
-	private Canvas canvas;
+	public Canvas canvas;
     public bool OpenInventoryCheck = false;
 
-    public PlayerController PC;
-    public PlayerCombatController PCC;
-    public IsPlayerInDialoge PinD;
+    public GameObject HealBar;
+
+    private PlayerController PC;
+    private PlayerCombatController PCC;
+    private IsPlayerInDialoge PinD;
+    private OpenMagicBook MB;
+    private bool State = true;
 
     void Start()
     {
@@ -22,21 +26,27 @@ public class OpenInventory : MonoBehaviour
         PC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         PCC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombatController>();
         PinD = GameObject.FindGameObjectWithTag("Player").GetComponent<IsPlayerInDialoge>();
+        MB = GameObject.Find("MagicBook").GetComponent<OpenMagicBook>();
     }
 
     void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.I) && !PinD.InDialoge)
+		if (Input.GetKeyDown(KeyCode.I) && !PinD.InDialoge && !MB.OpenBookCheck)
 		{
-			canvas.enabled = !canvas.enabled;
+            DialogeState();
             OpenInventoryCheck = !OpenInventoryCheck;
+            State = !State;
+            HealBar.SetActive(State);
+            canvas.enabled = !canvas.enabled;
         }
 
-        if (OpenInventoryCheck) DialogeState();
-        else DialogeExit();
+        if (!OpenInventoryCheck && !MB.OpenBookCheck)
+        {  
+             DialogeExit();         
+        }
     }
 
-    void DialogeState()
+    public void DialogeState()
     {
         PC.movementSpeed = 0;
         PC.jumpForce = 0;
@@ -44,7 +54,7 @@ public class OpenInventory : MonoBehaviour
         PCC.combatEnabled = false;
     }
 
-    void DialogeExit()
+    public void DialogeExit()
     {
         PC.movementSpeed = 7;
         PC.jumpForce = 16;
