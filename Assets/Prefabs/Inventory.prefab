@@ -101,6 +101,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Sprites:
   - {fileID: 247891007002746917, guid: c47b3d33053aae641ae12b6b959256a1, type: 3}
   - {fileID: 5248415023898783801, guid: 6d6930fca16135148bcbd187d947cc48, type: 3}
@@ -121,7 +123,27 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ItemCount: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  ItemCountFields:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   InventoryObjects:
+  - '-'
+  - '-'
   - '-'
   - '-'
   - '-'

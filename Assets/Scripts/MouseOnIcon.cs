@@ -19,6 +19,7 @@ public class MouseOnIcon : MonoBehaviour, IPointerDownHandler
             Inv.Icon[ButtonIndex].sprite = Inv.Sprites[4];
             MM.LastAction = "Выброшен предмет [" + Inv.InventoryObjects[ButtonIndex] + "]";
             Inv.InventoryObjects[ButtonIndex] = "-";
+            Debug.Log("нажалась кнопка я хз");
         }
     }
 

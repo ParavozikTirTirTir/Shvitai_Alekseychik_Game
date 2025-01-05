@@ -167,9 +167,20 @@ public class MissionBot : MonoBehaviour
                     "Отдать предмет")) // то появится кнопка да, при нажатии на которую;
                     {
                         ObjectIndexInInventory = Inv.InventoryObjects.IndexOf(MissionObjectName);
-                        Inv.Icon[ObjectIndexInInventory].sprite = Inv.Sprites[4];
-                        Inv.InventoryObjects.Insert(ObjectIndexInInventory, "-");
-                        Inv.InventoryObjects.Remove(MissionObjectName);
+                        if (Inv.ItemCount[ObjectIndexInInventory] > 1)
+                        {
+                            Inv.ItemCount[ObjectIndexInInventory] -= 1;
+                        }
+
+                        if (Inv.ItemCount[ObjectIndexInInventory] == 1)
+                        {
+                            Inv.ItemCount[ObjectIndexInInventory] -= 1;
+                            Inv.Icon[ObjectIndexInInventory].sprite = Inv.Sprites[4];
+                            Inv.InventoryObjects.Insert(ObjectIndexInInventory, "-");
+                        }
+                        //Inv.Icon[ObjectIndexInInventory].sprite = Inv.Sprites[4];
+                        //Inv.InventoryObjects.Insert(ObjectIndexInInventory, "-");
+                        //Inv.InventoryObjects.Remove(MissionObjectName);
 
                         MM.LastAction = "Закончен квест [" + MissionName + "]";
                         MM.MissionsInProgress.Remove(MissionName); // убираем квест из списка активных
@@ -179,10 +190,19 @@ public class MissionBot : MonoBehaviour
 
                         if (CanGiveAnItem)
                         {
-                            EmptyIndexInInventory = Inv.InventoryObjects.IndexOf("-");
-                            Inv.Icon[EmptyIndexInInventory].sprite = RewardSprite;
-                            Inv.InventoryObjects.Insert(EmptyIndexInInventory, RewardName);
-                            Inv.InventoryObjects.Remove("-");
+                            if (Inv.InventoryObjects.Contains(RewardName))
+                            {
+                                Inv.ItemCount[Inv.InventoryObjects.IndexOf(RewardName)] += 1;
+                            }
+
+                            else
+                            {
+                                EmptyIndexInInventory = Inv.InventoryObjects.IndexOf("-");
+                                Inv.ItemCount[EmptyIndexInInventory] += 1;
+                                Inv.Icon[EmptyIndexInInventory].sprite = RewardSprite;
+                                Inv.InventoryObjects.Insert(EmptyIndexInInventory, RewardName);
+                                Inv.InventoryObjects.Remove("-");
+                            }
 
                             MM.LastAction = "Закончен квест [" + MissionName + "] и получен предмет [" + RewardName + "]";
                         }

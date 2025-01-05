@@ -40,10 +40,19 @@ public class MissionObject : MonoBehaviour
             //Inv.Icon[Inv.i].sprite = ThisObjectSprite.sprite;
             //Inv.InventoryObjects.Add(ObjectName);
 
-            EmptyIndexInInventory = Inv.InventoryObjects.IndexOf("-");
-            Inv.Icon[EmptyIndexInInventory].sprite = ThisObjectSprite.sprite;
-            Inv.InventoryObjects.Insert(EmptyIndexInInventory, ObjectName);
-            Inv.InventoryObjects.Remove("-");
+            if (Inv.InventoryObjects.Contains(ObjectName)) 
+            {
+                Inv.ItemCount[Inv.InventoryObjects.IndexOf(ObjectName)] += 1;
+            }
+
+            else
+            {
+                EmptyIndexInInventory = Inv.InventoryObjects.IndexOf("-");
+                Inv.ItemCount[EmptyIndexInInventory] += 1;
+                Inv.Icon[EmptyIndexInInventory].sprite = ThisObjectSprite.sprite;
+                Inv.InventoryObjects.Insert(EmptyIndexInInventory, ObjectName);
+                Inv.InventoryObjects.Remove("-");
+            }
 
             MM.LastAction = "Получено [" + ObjectName + "]";
 

@@ -60,10 +60,19 @@ public class ChestTorch : MonoBehaviour
 
             if (CanGiveAnItem) //добавление награды из сундука в инвентарь
             {
-                EmptyIndexInInventory = Inv.InventoryObjects.IndexOf("-");
-                Inv.Icon[EmptyIndexInInventory].sprite = RewardSprite;
-                Inv.InventoryObjects.Insert(EmptyIndexInInventory, RewardName);
-                Inv.InventoryObjects.Remove("-");
+                if (Inv.InventoryObjects.Contains(RewardName))
+                {
+                    Inv.ItemCount[Inv.InventoryObjects.IndexOf(RewardName)] += 1;
+                }
+
+                else
+                {
+                    EmptyIndexInInventory = Inv.InventoryObjects.IndexOf("-");
+                    Inv.ItemCount[EmptyIndexInInventory] += 1;
+                    Inv.Icon[EmptyIndexInInventory].sprite = RewardSprite;
+                    Inv.InventoryObjects.Insert(EmptyIndexInInventory, RewardName);
+                    Inv.InventoryObjects.Remove("-");
+                }
             }
         }
     }
