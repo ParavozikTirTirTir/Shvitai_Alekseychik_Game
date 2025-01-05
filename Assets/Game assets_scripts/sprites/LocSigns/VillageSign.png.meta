@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      VillageSign_0: 1687599251751321405
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
