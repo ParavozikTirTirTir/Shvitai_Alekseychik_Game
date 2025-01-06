@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+//Алгоритм случайного блуждания
+
 public class TileMapTest : MonoBehaviour
 {
     public Tilemap tilemap; // Ссылка на Tilemap в сцене
