@@ -66,6 +66,14 @@ PrefabInstance:
       value: Meat
       objectReference: {fileID: 0}
     - target: {fileID: 7107795680380649111, guid: b4831eec209fa1847ab2f3b3bd8c206b, type: 3}
+      propertyPath: m_Size.x
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7107795680380649111, guid: b4831eec209fa1847ab2f3b3bd8c206b, type: 3}
+      propertyPath: m_Size.y
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7107795680380649111, guid: b4831eec209fa1847ab2f3b3bd8c206b, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 8780201975760045216, guid: 6617d57a99aa3cb4784d0a2941663af7, type: 3}
