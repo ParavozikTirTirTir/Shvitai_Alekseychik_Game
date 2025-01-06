@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-[System.Serializable]
 
-public class OpenInventory : MonoBehaviour
+public class OpenCraft : MonoBehaviour
 {
-	public Canvas canvas;
-    public bool OpenInventoryCheck = false;
+    public Canvas canvas;
+    public bool OpenCraftCheck = false;
 
     public GameObject HealBar;
 
     private PlayerController PC;
+    private OpenInventory OI;
     private PlayerCombatController PCC;
     private IsPlayerInDialoge PinD;
     private OpenMagicBook MB;
-    private OpenCraft OC;
-
     private bool State = true;
 
     void Start()
@@ -29,23 +27,24 @@ public class OpenInventory : MonoBehaviour
         PCC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombatController>();
         PinD = GameObject.FindGameObjectWithTag("Player").GetComponent<IsPlayerInDialoge>();
         MB = GameObject.Find("MagicBook").GetComponent<OpenMagicBook>();
-        OC = GameObject.Find("Craft").GetComponent<OpenCraft>();
+        OI = GameObject.Find("InventoryCanvas").GetComponent<OpenInventory>();
     }
 
+
     void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.I) && !PinD.InDialoge && !MB.OpenBookCheck && !OC.OpenCraftCheck)
-		{
+    {
+        if (Input.GetKeyDown(KeyCode.C) && !PinD.InDialoge && !MB.OpenBookCheck && !OI.OpenInventoryCheck)
+        {
             DialogeState();
-            OpenInventoryCheck = !OpenInventoryCheck;
+            OpenCraftCheck = !OpenCraftCheck;
             State = !State;
             HealBar.SetActive(State);
             canvas.enabled = !canvas.enabled;
         }
 
-        if (!OpenInventoryCheck && !MB.OpenBookCheck && !OC.OpenCraftCheck)
-        {  
-             DialogeExit();         
+        if (!OpenCraftCheck && !MB.OpenBookCheck && !OI.OpenInventoryCheck)
+        {
+            DialogeExit();
         }
     }
 

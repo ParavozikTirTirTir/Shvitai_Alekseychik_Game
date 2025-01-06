@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6617d57a99aa3cb4784d0a2941663af7
+guid: f4956f0f74ac87e41b1bf5a722b98f34
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8780201975760045216
-    second: "\u041C\u042F\u0421\u041E_0"
+      213: 8294026248581752770
+    second: Inventory_Slot_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u041C\u042F\u0421\u041E_0"
+      name: Inventory_Slot_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 750
-        height: 750
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a44c5d6d2b89d970800000000000000
-      internalID: 8780201975760045216
+      spriteID: 2c72b70fdec4a1370800000000000000
+      internalID: 8294026248581752770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Inventory_Slot_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 379961d64017dab48a09eaf615d3fee6
+      internalID: -465089726
       vertices: []
       indices: 
       edges: []
@@ -121,7 +142,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a31b71caf27f8cc4398a4c6478cd4b46
+    spriteID: 1b25ab28924a8454580110849493340d
     internalID: 0
     vertices: []
     indices: 
@@ -129,7 +150,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u041C\u042F\u0421\u041E_0": 8780201975760045216
+      Inventory_Slot_0: 8294026248581752770
+      Inventory_Slot_1: -465089726
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
