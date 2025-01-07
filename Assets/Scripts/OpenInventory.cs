@@ -16,8 +16,6 @@ public class OpenInventory : MonoBehaviour
     private PlayerCombatController PCC;
     private IsPlayerInDialoge PinD;
     private OpenMagicBook MB;
-    private OpenCraft OC;
-
     private bool State = true;
 
     void Start()
@@ -29,12 +27,11 @@ public class OpenInventory : MonoBehaviour
         PCC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombatController>();
         PinD = GameObject.FindGameObjectWithTag("Player").GetComponent<IsPlayerInDialoge>();
         MB = GameObject.Find("MagicBook").GetComponent<OpenMagicBook>();
-        OC = GameObject.Find("Craft").GetComponent<OpenCraft>();
     }
 
     void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.I) && !PinD.InDialoge && !MB.OpenBookCheck && !OC.OpenCraftCheck)
+		if (Input.GetKeyDown(KeyCode.I) && !PinD.InDialoge && !MB.OpenBookCheck)
 		{
             DialogeState();
             OpenInventoryCheck = !OpenInventoryCheck;
@@ -43,7 +40,7 @@ public class OpenInventory : MonoBehaviour
             canvas.enabled = !canvas.enabled;
         }
 
-        if (!OpenInventoryCheck && !MB.OpenBookCheck && !OC.OpenCraftCheck)
+        if (!OpenInventoryCheck && !MB.OpenBookCheck)
         {  
              DialogeExit();         
         }

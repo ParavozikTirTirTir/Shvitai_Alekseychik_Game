@@ -5,4 +5,5 @@ using UnityEngine;
 public class IsPlayerInDialoge : MonoBehaviour
 {
     public bool InDialoge = false;
+    private MissionBot MB;
 }

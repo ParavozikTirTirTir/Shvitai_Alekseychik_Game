@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -101,10 +101,10 @@ TextureImporter:
       name: "\u041C\u042F\u0421\u041E_0"
       rect:
         serializedVersion: 2
-        x: 0
+        x: 36
         y: 0
-        width: 750
-        height: 750
+        width: 752
+        height: 793
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

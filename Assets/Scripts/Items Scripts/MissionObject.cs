@@ -6,7 +6,6 @@ public class MissionObject : MonoBehaviour
     private MissionManager MM;
     public bool trigger = false;
     public string ObjectName;
-    public string Stats;
     private Inventory Inv;
     private SpriteRenderer ThisObjectSprite;
     public int EmptyIndexInInventory;
